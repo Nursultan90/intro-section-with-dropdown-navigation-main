@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap');
+
+//colors
+$almost-white: hsl(0, 0%, 95%);
+$medium-gray: hsl(0, 0%, 41%);
+$almost-black: hsl(0, 0%, 8%);
+
+//font-size
+$main-text-size: 18px;
+
+//font-family
+@mixin epilogue500 {
+	font-family: 'Epilogue', sans-serif;
+	font-weight: 500;
+}
+@mixin epilogue700 {
+	font-family: 'Epilogue', sans-serif;
+	font-weight: 700;
+}
+$epilogue: 'Epilogue', sans-serif;
+
+
+body {
+	font-family: $epilogue;
+	background-color: $almost-white;
+	position: relative;
+}
+.dark-bg {
+	background-color: #000;
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+body.lock {
+	overflow: hidden;
+}
+.dark-bg.active {
+	display: block;
+} 
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.main {
+		flex: 1 1 auto;
+	}
+}
+.header {
+	@media (max-width: 767.98px) {
+		padding: 15px;
+	}
+	padding: 15px 30px;
+	&__body {
+		display: flex;
+		align-items: center;
+		@media (max-width: 767.98px) {
+			justify-content: space-between;
+		}
+	}
+	&__logo {
+		display: flex;
+		align-items: center;
+		position: relative;
+		top: 3px;
+	}
+	&__menu {
+		flex: 1 1 auto;
+		display: flex;
+		align-items: center;
+		@media (max-width: 767.98px) {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 100%;
+			background-color: #fff;
+			width: 100%;
+			height: 100%;
+			transition: all 0.5s ease;
+			padding: 10% 35% 5% 5%;
+			overflow: auto;
+		}
+	}
+	&__menu.open {
+		@media (max-width: 767.98px) {
+			left: 30%;
+		}
+	}
+}
+.menu {
+	&__list {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		@media (max-width: 767.98px) {
+			display: block;
+		}
+	}
+	&__item {
+		margin: 0 0 0 40px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		:hover {
+			cursor: pointer;
+			color: #000;
+		}
+		@media (max-width: 767.98px) {
+			margin: 0 0 15px 0;
+			display: block;
+		}
+	}
+	&__link {
+		color: $medium-gray;
+	}
+}
+.arrow {
+	padding: 0px 0px 0px 5px;
+	transition: all 0.3s ease;
+}
+.menu__item--active .arrow {
+	transform: rotate(180deg);
+	padding: 0px 5px 0px 0px;
+}
+.sub-menu {
+	&__list {
+		display: none;
+		position: absolute;
+		top: 25px;
+		background-color: #fff;
+		padding: 15px;
+		border-radius: 5px;
+		box-shadow: 0px 3px 10px 3px rgba(0,0,0,0.1);
+		>:not(:last-child) {
+			margin-bottom: 10px;
+		}
+		@media (max-width: 767.98px) {
+			display: none;
+			position: static;
+			padding: 20px 15px;
+			box-shadow: none;
+		}
+	}
+	&__list-1 {
+		right: 0;
+	}
+	&__list-2 {
+		left: 0;
+		width: 100px;
+		@media (max-width: 767.98px) {
+			left: 0;
+			width: 100px;
+		}
+	}
+	&__item {
+		display: flex;
+		align-items: center;
+		img {
+			margin-right: 10px;
+		}
+	}
+	&__link {
+		color: $medium-gray;
+		display: inline-block;
+	}
+}
+.menu__item--active .sub-menu__list {
+	display: block;
+}
+.user {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	color: $medium-gray;
+	&__register {
+		border: 1px solid $almost-black;
+		padding: 10px 20px;
+		border-radius: 10px;
+		color: inherit;
+		background-color: $almost-white;
+		@media (max-width: 767.98px) {
+			background-color: #fff;
+			margin-top: 3%;
+			width: calc(120px + 230 * (70vw / 767));
+		}
+	}
+	@media (max-width: 767.98px) {
+		flex-direction: column;
+		align-items: center;
+		gap: 0;
+	}
+}
+.burger {
+	display: none;
+	width: 30px;
+	height: 25px;
+	position: relative;
+	@media (max-width: 767.98px) {
+		display: block;
+	}
+}
+.burger span {
+	position: absolute;
+	top: 41%;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background-color: #000;
+	@media (max-width: 767.98px) {
+		transition: all 0.3s ease;
+	}
+}
+.burger::before, .burger::after {
+	position: absolute;
+	content: '';
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background-color: #000;
+	@media (max-width: 767.98px) {
+		transition: all 0.3s ease;
+	}
+}
+.burger::before {
+	top: 0px;
+}
+.burger::after {
+	bottom: 1px;
+}
+.burger.active span {
+	@media (max-width: 767.98px) {
+		display: none;
+	}
+}
+.burger.active::before {
+	@media (max-width: 767.98px) {
+		transform: rotate(-45deg);
+		top: 50%;
+	}
+}
+.burger.active::after {
+	@media (max-width: 767.98px) {
+		transform: rotate(45deg);
+		top: 50%;
+	}
+}
+// ========MAIN========================================================================================================================
+.main {
+	&__body {
+		display: flex;
+		@media (max-width: 991.98px) {
+			flex-direction: column;
+		}
+	}
+	&__content {
+		width: 50%;
+		@media (max-width: 991.98px) {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 0 15px;
+		}
+	}
+	&__img {
+		width: 50%;
+		display: flex;
+		justify-content: flex-end;
+		@media (max-width: 991.98px) {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
+.container {
+	max-width: 1250px;
+	margin: 0 auto;
+	padding: 15px 20px 80px;
+	@media (max-width: 991.98px) {
+		max-width: 1250px;
+		margin: 0 auto;
+		padding: 15px 0px 80px;
+	}
+}
+.content-main {
+	@media (max-width: 480px) {
+		padding: 0 9px;
+	}
+	&__title {
+		@include epilogue700;
+		font-size: calc(35px + 23 * (100vw / 1280));
+		margin-top: calc(40px + 60 * (100vw / 1280));
+		margin-bottom: calc(25px + 25 * (100vw / 1280));
+		line-height: 1.2;
+		@media (max-width: 991.98px) {
+			text-align: center;
+		}
+	}
+	&__text {
+		@include epilogue500;
+		font-size: calc(12px + 6 * (100vw / 1280));
+		color: $medium-gray;
+		max-width: 460px;
+		line-height: 1.5;
+		margin-bottom: calc(25px + 25 * (100vw / 1280));
+		@media (max-width: 991.98px) {
+			text-align: center;
+			padding: 0 10px;
+		}
+	}
+	&__button {
+		padding: 15px 30px;
+		background-color: $almost-black;
+		color: #fff;
+		border-radius: 10px;
+		margin-bottom: calc(40px + 50 * (100vw / 1280));
+	}
+	&__partners {
+		display: flex;
+		column-gap: 30px;
+		flex-wrap: wrap;
+		@media (max-width: 991.98px) {
+			justify-content: center;
+			row-gap: 10px;
+		}
+	}
+}
+.img-main {
+	&__box {
+		width: 450px;
+		@media (max-width: 991.98px) {
+			width: 100%;
+			text-align: center;
+		}
+	}
+	&__box img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+}
